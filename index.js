@@ -1,6 +1,7 @@
+// We load the configuration data
 require('dotenv').config();
 
-// get the client
+// get the mysql client and the axios client
 const mysql = require('mysql2');
 const axios = require('axios');
 
@@ -20,6 +21,7 @@ const connectionData = {
 console.log(connectionData);
 const connection = mysql.createConnection(connectionData);
 
+// Get all the bank accounts from the database.
 function queryBankAccounts() {
     return new Promise((resolve, reject) => {
         // simple query
@@ -39,7 +41,7 @@ function queryBankAccounts() {
         );
     })
 }
-
+//Validate the account against the api service.
 function validateAccount(element) {
     return new Promise((resolve, reject) => {
         axios.post(url + '/validations/BankAccount', {
@@ -60,6 +62,7 @@ function validateAccount(element) {
     })
 }
 
+//We validate all the bank accounts that we have on our database against the service. We don't do anything wit that validation.
 queryBankAccounts().then(async (queryResults) => {
     // console.log(queryResults);
     for (let index = 0; index < queryResults.length; index++) {
