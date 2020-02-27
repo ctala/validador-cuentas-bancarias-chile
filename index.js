@@ -52,11 +52,11 @@ function validateAccount(element) {
                 }
             })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 resolve(response);
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
                 reject(error);
             });
     })
@@ -71,7 +71,7 @@ queryBankAccounts().then(async (queryResults) => {
             const resultadoValidacion = await validateAccount(element);
             console.log(index, queryResults.length - 1, resultadoValidacion.data);
         } catch (error) {
-            console.log(error);
+            console.log("ERROR", error.response.status,error.response.statusText);
         }
 
     }
