@@ -71,7 +71,7 @@ queryBankAccounts().then(async (queryResults) => {
             const resultadoValidacion = await validateAccount(element);
             console.log(index, queryResults.length - 1, resultadoValidacion.data);
         } catch (error) {
-            console.log("ERROR", error.response.status,error.response.statusText);
+            console.log("ERROR", error.response.status,error.response.statusText, error.response.data);
         }
 
     }
